@@ -9,17 +9,14 @@ public class MeshGeneration : MonoBehaviour
     private float height = 2;
 
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         DrawArrow();
     }
 
     private void DrawArrow()
     {
-        MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
-        meshRenderer.sharedMaterial = new Material(Shader.Find("Standard"));
-
-        MeshFilter meshFilter = gameObject.AddComponent<MeshFilter>();
+        MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
 
         Mesh mesh = new Mesh();
 
@@ -45,8 +42,5 @@ public class MeshGeneration : MonoBehaviour
 
         meshFilter.mesh = mesh;
         mesh.RecalculateNormals();
-
-        meshRenderer.material = mat;
-        meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
     }
 }
